@@ -10,9 +10,7 @@ pipeline {
 
         stage("test") {
             when {
-                expression {
-                    BRANCH_NAME == 'dev'
-                }
+                branch 'dev'
             }
             steps {
                 echo 'Testing the application'
