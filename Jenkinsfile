@@ -13,8 +13,10 @@ pipeline {
 
         stage("test") {
             when {
-                branch 'dev'
-                branch 'master'
+                anyOf {
+                    branch 'dev'
+                    branch 'master'
+                }
             }
             steps {
                 echo "Testing the application ${SERVER_CREDENTIALS}"
