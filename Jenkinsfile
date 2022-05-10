@@ -2,6 +2,7 @@ pipeline {
     agent any //the pipeline will run on any available jenkins agents. Jenkins agents are executor nodes (linux or windows)
     environment {
         NEW_VERSION = '1.0'
+        SERVER_CREDENTIALS = credentials('server-credentials')
     }
     stages {
         stage("build") {
@@ -12,10 +13,10 @@ pipeline {
 
         stage("test") {
             when {
-                branch 'dev'
+                branch 'dev' || 'master'
             }
             steps {
-                echo 'Testing the application'
+                echo "Testing the application ${SERVER_CREDENTIALS}"
             }
         }
 
