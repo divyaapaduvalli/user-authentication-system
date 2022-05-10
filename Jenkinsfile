@@ -4,6 +4,9 @@ pipeline {
         NEW_VERSION = '1.0'
         SERVER_CREDENTIALS = credentials('server-credentials')
     }
+    parameters {
+        booleanParam(name: 'executeTests', defaultValue: true, description: '')
+    }
     stages {
         stage("build") {
             steps {
@@ -14,18 +17,23 @@ pipeline {
         stage("test") {
             when {
                 anyOf {
-                    branch 'dev'
-                    branch 'master'
+//                     branch 'dev'
+//                     branch 'master'
+                       params.executeTests
                 }
             }
             steps {
-                echo "Testing the application ${SERVER_CREDENTIALS}"
+                echo "Testing the application"
+//              echo "Testing the application ${SERVER_CREDENTIALS}"
             }
         }
 
         stage("deploy") {
             steps {
                 echo 'Deploying the application'
+//                 withCredentials([usernamePasswprd(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)]) {
+//                     sh "some command ${USER} ${PWD}"
+//                 }
             }
         }
 //         post {
