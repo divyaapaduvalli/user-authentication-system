@@ -24,13 +24,13 @@ pipeline {
                 echo 'Deploying the application'
             }
         }
-        post{
-            always{
-                //Will run irrespective what happens in the above stages
-            }
-            failure{
-                //When we run into any failure in any of the stages
-            }
-        }
+//         post {
+//             always{
+//                 //Will run irrespective what happens in the above stages
+//             }
+//             failure{
+//                 //When we run into any failure in any of the stages
+//             }
+//         }
     }
 }
