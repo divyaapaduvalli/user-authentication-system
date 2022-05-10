@@ -19,7 +19,7 @@ pipeline {
                 anyOf {
 //                     branch 'dev'
 //                     branch 'master'
-                       params.executeTests
+                       expression( params.executeTests )
                 }
             }
             steps {
