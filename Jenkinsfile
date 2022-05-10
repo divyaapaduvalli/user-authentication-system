@@ -9,6 +9,11 @@ pipeline {
         }
 
         stage("test") {
+            when {
+                expression {
+                    BRANCH_NAME == 'dev'
+                }
+            }
             steps {
                 echo 'Testing the application'
             }
@@ -17,6 +22,14 @@ pipeline {
         stage("deploy") {
             steps {
                 echo 'Deploying the application'
+            }
+        }
+        post{
+            always{
+                //Will run irrespective what happens in the above stages
+            }
+            failure{
+                //When we run into any failure in any of the stages
             }
         }
     }
