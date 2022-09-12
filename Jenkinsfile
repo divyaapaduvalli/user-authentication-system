@@ -8,6 +8,7 @@ pipeline {
         booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
     stages {
+        
         stage("build") {
             steps {
                 echo "Building the application of version ${NEW_VERSION}"
